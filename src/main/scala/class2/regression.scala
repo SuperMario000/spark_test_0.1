@@ -18,7 +18,7 @@ object regression {
     val conf=new SparkConf().setAppName("regression").setMaster("local[1]")
     val sc=new SparkContext(conf)
 
-    val records=sc.textFile("file:///D:/Workspaces/IdeaProjects/SCALA_PROJECTS/data/spark_test_0.1/regression/hour_noheader.csv").map(_.split(",")).cache()
+    val records=sc.textFile("file:///D:/soft-install/workspaces/ideaprojects/sparkprojects/data/spark_test_0.1/class2/regression/hour_noheader.csv").map(_.split(",")).cache()
 
     // Range(2,10) = Range(2, 3, 4, 5, 6, 7, 8, 9)
     val mappings=for(i<-Range(2,10))yield get_mapping(records,i)
