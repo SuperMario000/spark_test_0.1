@@ -56,6 +56,7 @@ object ml_regression_test_h1 {
     val true_vs_predicted=data.map(p=>(p.label,linear_model.predict(p.features)))
     //输出前10个真实值与预测值
     println( true_vs_predicted.take(5).toVector.toString())
+    //Vector((3.0,3.219002121341281), (14.0,3.2573873232352053), (1.0,2.7040376299928734), (3.0,3.0739772364797595), (3.0,2.7280288939401416))
   }
 
   def get_mapping(rdd:RDD[Array[String]], idx:Int)=
