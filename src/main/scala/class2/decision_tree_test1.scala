@@ -34,13 +34,13 @@ object decision_tree_test1 {
       val label=record(record.size-1).toDouble
       LabeledPoint(label,Vectors.dense(features))
 
-    }
+    }.randomSplit(Array(0.7,0.3),11L)
 
     val categoricalFeaturesInfo = Map[Int, Int]()
-    val tree_model=DecisionTree.trainRegressor(data,categoricalFeaturesInfo,"variance",5,32)
+    val tree_model=DecisionTree.trainRegressor(data(0),categoricalFeaturesInfo,"variance",5,32)
     //    val linear_model=LinearRegressionWithSGD.train(data,10,0.5)
-    val true_vs_predicted=data.map(p=>(p.label,tree_model.predict(p.features)))
-    println( true_vs_predicted.take(5).toVector.toString())
+    val true_vs_predicted=data(1).map(p=>(p.label,tree_model.predict(p.features)))
+    //println( true_vs_predicted.take(5).toVector.toString())
     // MSE是均方误差，是用作最小二乘回归的损失函数，表示所有样本预测值和实际值平方差的平均值
     // RMSE是MSE的平方根
     val MSE=true_vs_predicted.map(value=>
